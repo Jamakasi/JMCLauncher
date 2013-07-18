@@ -69,6 +69,9 @@ public class Launcher extends Applet
       applet.init();
       return;
     }
+    Config.Uname = getParameter("userName");
+    Config.Uversion = getParameter("latestVersion");
+    Config.Usession = getParameter("sessionId");
     init(getParameter("userName"), getParameter("latestVersion"), getParameter("downloadTicket"), getParameter("sessionId"));
   }
 

@@ -43,4 +43,9 @@ public class Config {
   //do not touch
   public static int CurrentServer;
   
+  //Огромные костыли, временно
+  public static String Uname;
+  public static String Usession;
+  public static String Uversion;
+  
 }

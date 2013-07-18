@@ -44,6 +44,7 @@ import java.util.zip.ZipFile;
 
 
 import SevenZip.LzmaAlone;
+import static net.minecraft.Util.getWorkingDirectory;
 //import com.sun.xml.internal.ws.util.StringUtils;
 
 public class GameUpdater
@@ -360,11 +361,36 @@ System.out.println("ПУТЬ К "+ path);
       e.printStackTrace();
     }
   }
-
+//При чтении следующего метода у вас может возникнуть приступ паники.
+  private void RunMC16(){
+      try{
+    
+    String jarpath = getWorkingDirectory()+ File.separator + Config.workFolderServers[Config.CurrentServer] + File.separator + "bin" + File.separator;
+    String workdir = getWorkingDirectory()+ File.separator + Config.workFolderServers[Config.CurrentServer] + File.separator;
+    //String runparam = "java -cp "+jarpath+"*"+" -Djava.library.path="+jarpath+"natives"+ File.separator +" net.minecraft.client.main.Main --username "+Config.Uname+" --session "+Config.Usession+" --version "+Config.Uversion ;     
+    String runparam = "java -cp "+jarpath+"*"+" -Djava.library.path="+jarpath+"natives"+ File.separator +" net.minecraft.client.main.Main --username "+Config.Uname+" --session "+Config.Usession+" --version "+Config.Uversion ;     
+    
+    
+    Runtime r = Runtime.getRuntime();
+    r.exec(runparam, null, new File(workdir));
+    System.out.println(runparam);
+    System.exit(1);
+      }catch(Exception e){
+      
+      
+      }  
+  }
+  
   public Applet createApplet() throws ClassNotFoundException, InstantiationException, IllegalAccessException
   {
-    Class<?> appletClass = classLoader.loadClass("net.minecraft.client.MinecraftApplet");
+    try{
+      Class<?> appletClass = classLoader.loadClass("net.minecraft.client.MinecraftApplet");
     return (Applet)appletClass.newInstance();
+  }catch(Exception e){
+        RunMC16();
+      Class<?> appletClass = classLoader.loadClass("net.minecraft.client.main.Main");
+    return (Applet)appletClass.newInstance();
+    }
   }  
   
   protected void downloadJars(String path)
