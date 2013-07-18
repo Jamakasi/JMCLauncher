@@ -98,7 +98,7 @@ public class LauncherFrame extends Frame
   public void login(String userName, String password) {
     try {
       String parameters = "user=" + URLEncoder.encode(userName, "UTF-8") + "&password=" + URLEncoder.encode(password, "UTF-8") + "&version=" + (Config.Version);
-      String result = Util.excutePost("http://pantheria.ru/MineCraft/auth.php", parameters);  //Config.AuthURL
+      String result = Util.excutePost(Config.AuthURL, parameters);  //Config.AuthURL
       if (result == null) {
           showError("Невозможно подключится к серверу!");
         loginForm.setNoNetwork();

@@ -31,7 +31,7 @@ public class Config {
     "Techno 1.4.7",
     "Vanila 1.6.2"
 };
- //Название папки в фс для каждого клиента
+ //Название папки в фс для каждого клиента и папки с дистрибутивом на сервере
   public static  String[] workFolderServers = {
     "techno147",
     "vanila162"

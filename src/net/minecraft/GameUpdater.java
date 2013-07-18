@@ -96,7 +96,7 @@ public int percentage;
 
   public void init() {
     state = 1;
-    try
+   /* try
     {
       Class.forName("LZMA.LzmaInputStream");
       lzmaSupported = true;
@@ -107,7 +107,7 @@ public int percentage;
       Pack200.class.getSimpleName();
       pack200Supported = true;
     } catch (Throwable localThrowable1) {
-    }
+    }*/
   }
 
   private String generateStacktrace(Exception exception) {
@@ -144,7 +144,7 @@ public int percentage;
     return "Неизвестное положение";
   }
 
-  protected String trimExtensionByCapabilities(String file)
+/*  protected String trimExtensionByCapabilities(String file)
   {
     if (!pack200Supported) {
       file = file.replaceAll(".pack", "");
@@ -154,49 +154,22 @@ public int percentage;
       file = file.replaceAll(".lzma", "");
     }
     return file;
-  }
+  }*/
 
   protected void loadJarURLs() throws Exception {
     state = 2;
     
     //#Внимание на сервере должен быть файл client.zip, даже пустой!
-    String jarList = "lwjgl.jar, jinput.jar, lwjgl_util.jar, client.zip, " + mainGameUrl;
-    jarList = trimExtensionByCapabilities(jarList);
+ //   String jarList = "client.zip, " + mainGameUrl;
 
-    StringTokenizer jar = new StringTokenizer(jarList, ", ");
-    int jarCount = jar.countTokens() + 1;
-
-    urlList = new URL[jarCount];
-    
     //# Откуда скачивать
     URL path = new URL((Config.CDwlUrl+Config.workFolderServers[Config.CurrentServer])+ '/');
-    System.out.println(path.toString());
-
-    for (int i = 0; i < jarCount - 1; i++) {
-      urlList[i] = new URL(path, jar.nextToken());
-    }
-
-    String osName = System.getProperty("os.name");
-    String nativeJar = null;
-
-    if (osName.startsWith("Win"))
-      nativeJar = "windows_natives.jar.lzma";
-    else if (osName.startsWith("Linux"))
-      nativeJar = "linux_natives.jar.lzma";
-    else if (osName.startsWith("Mac"))
-      nativeJar = "macosx_natives.jar.lzma";
-    else if ((osName.startsWith("Solaris")) || (osName.startsWith("SunOS")))
-      nativeJar = "solaris_natives.jar.lzma";
-    else {
-      fatalErrorOccured("OS (" + osName + ") не поддерживается", null);
-    }
-
-    if (nativeJar == null) {
-      fatalErrorOccured("lwjgl файлы не найдены", null);
-    } else {
-      nativeJar = trimExtensionByCapabilities(nativeJar);
-      urlList[(jarCount - 1)] = new URL(path, nativeJar);
-    }
+    //System.out.println(path.toString());
+    urlList = new URL[3];
+    urlList[0] = new URL(path, "client.zip");
+    urlList[1] = new URL(path, "custom.zip");
+    urlList[2] = new URL(path, "minecraft.jar");
+    //String osName = System.getProperty("os.name");
   }
 
   public void run()
@@ -242,7 +215,7 @@ public int percentage;
 
             downloadJars(path);
             extractJars(path);
-            extractNatives(path);
+            //extractNatives(path);
 
             if (latestVersion != null) {
               percentage = 90;
@@ -303,6 +276,7 @@ private void checkShouldUpdate() {
     URL[] urls = new URL[urlList.length];
     for (int i = 0; i < urlList.length; i++) {
       urls[i] = new File(dir, getJarName(urlList[i])).toURI().toURL();
+      //System.out.println("JARURL " + urls[i].toString());
     }
 
     if (classLoader == null) {
@@ -318,7 +292,7 @@ private void checkShouldUpdate() {
             perms = (PermissionCollection)method.invoke(getClass().getClassLoader(), new Object[] { 
               codesource });
 
-            String host = "www.minecraft.net";
+            String host = Config.LDwlURL;
 
             if ((host != null) && (host.length() > 0))
             {
@@ -559,134 +533,18 @@ private void checkShouldUpdate() {
   {
     state = 5;
     
-    UnZip();
-    
     float increment = 10.0F / urlList.length;
 
-    for (int i = 0; i < urlList.length; i++) {
-      percentage = (55 + (int)(increment * (i + 1)));
-      String filename = getFileName(urlList[i]);
-
-      if (filename.endsWith(".pack.lzma")) {
-        subtaskMessage = ("Extracting: " + filename + " to " + filename.replaceAll(".lzma", ""));
-        extractLZMA(path + filename, path + filename.replaceAll(".lzma", ""));
-
-        subtaskMessage = ("Extracting: " + filename.replaceAll(".lzma", "") + " to " + filename.replaceAll(".pack.lzma", ""));
-        extractPack(path + filename.replaceAll(".lzma", ""), path + filename.replaceAll(".pack.lzma", ""));
-      } else if (filename.endsWith(".pack")) {
-        subtaskMessage = ("Extracting: " + filename + " to " + filename.replace(".pack", ""));
-        extractPack(path + filename, path + filename.replace(".pack", ""));
-      } else if (filename.endsWith(".lzma")) {
-        subtaskMessage = ("Extracting: " + filename + " to " + filename.replace(".lzma", ""));
-        extractLZMA(path + filename, path + filename.replace(".lzma", ""));
-      }
-    }
+          percentage = (55 + (int)(increment * 1));
+          subtaskMessage = ("Extracting: Client files");
+    UnZip("client.zip");
+          percentage = (55 + (int)(increment * 2));
+          subtaskMessage = ("Extracting: custom content");
+    UnZip("custom.zip");
   }
 
 
-protected void extractNatives(String path) throws Exception
-  {
-    state = 5;
-
-    int initialPercentage = percentage;
-
-    String nativeJar = getJarName(urlList[(urlList.length - 1)]);
-
-    Certificate[] certificate = Launcher.class.getProtectionDomain().getCodeSource().getCertificates();
-
-    if (certificate == null) {
-      URL location = Launcher.class.getProtectionDomain().getCodeSource().getLocation();
-
-      JarURLConnection jurl = (JarURLConnection)new URL("jar:" + location.toString() + "!/net/minecraft/Launcher.class").openConnection();
-      jurl.setDefaultUseCaches(true);
-      try {
-        certificate = jurl.getCertificates();
-      }
-      catch (Exception localException)
-      {
-      }
-    }
-    File nativeFolder = new File(path + "natives");
-    if (!nativeFolder.exists()) {
-      nativeFolder.mkdir();
-    }
-
-    File file = new File(path + nativeJar);
-    if (!file.exists()) return;
-    JarFile jarFile = new JarFile(file, true);
-    Enumeration<?> entities = jarFile.entries();
-
-    totalSizeExtract = 0;
-
-    while (entities.hasMoreElements()) {
-      JarEntry entry = (JarEntry)entities.nextElement();
-
-      if ((entry.isDirectory()) || (entry.getName().indexOf('/') != -1)) {
-        continue;
-      }
-      totalSizeExtract = (int)(totalSizeExtract + entry.getSize());
-    }
-
-    currentSizeExtract = 0;
-
-    entities = jarFile.entries();
-
-    while (entities.hasMoreElements()) {
-      JarEntry entry = (JarEntry)entities.nextElement();
-
-      if ((entry.isDirectory()) || (entry.getName().indexOf('/') != -1))
-      {
-        continue;
-      }
-      File f = new File(path + "natives" + File.separator + entry.getName());
-      if ((f.exists()) && 
-        (!f.delete()))
-      {
-        continue;
-      }
-
-      InputStream in = jarFile.getInputStream(jarFile.getEntry(entry.getName()));
-      OutputStream out = new FileOutputStream(path + "natives" + File.separator + entry.getName());
-
-      byte[] buffer = new byte[65536];
-      int bufferSize;
-      while ((bufferSize = in.read(buffer, 0, buffer.length)) != -1)
-      {
-        //int bufferSize;
-        out.write(buffer, 0, bufferSize);
-        currentSizeExtract += bufferSize;
-
-        percentage = (initialPercentage + currentSizeExtract * 20 / totalSizeExtract);
-        subtaskMessage = ("Extracting: " + entry.getName() + " " + currentSizeExtract * 100 / totalSizeExtract + "%");
-      }
-
-      validateCertificateChain(certificate, entry.getCertificates());
-
-      in.close();
-      out.close();
-    }
-    subtaskMessage = "";
-
-    jarFile.close();
-
-    File f = new File(path + nativeJar);
-    f.delete();
-  }
-
-  protected static void validateCertificateChain(Certificate[] ownCerts, Certificate[] native_certs)
-    throws Exception
-  {
-    if (ownCerts == null) return;
-    if (native_certs == null) throw new Exception("Unable to validate certificate chain. Native entry did not have a certificate chain at all");
-
-    if (ownCerts.length != native_certs.length) throw new Exception("Unable to validate certificate chain. Chain differs in length [" + ownCerts.length + " vs " + native_certs.length + "]");
-
-    for (int i = 0; i < ownCerts.length; i++)
-      if (!ownCerts[i].equals(native_certs[i]))
-        throw new Exception("Certificate mismatch: " + ownCerts[i] + " != " + native_certs[i]);
-  }
-
-  protected String getJarName(URL url)
+ protected String getJarName(URL url)
   {
     String fileName = url.getFile();
 
@@ -753,7 +611,7 @@ protected void extractNatives(String path) throws Exception
  * @author ddark008
  * @throws PrivilegedActionException
  */
-protected void UnZip() throws PrivilegedActionException
+protected void UnZip(String ZipName) throws PrivilegedActionException
   {
     String szZipFilePath;
     String szExtractPath;
@@ -764,7 +622,7 @@ protected void UnZip() throws PrivilegedActionException
       }); 
     int i;
     
-    szZipFilePath = path + "bin" + File.separator + "client.zip";
+    szZipFilePath = path + "bin" + File.separator + ZipName;
       
     File f = new File(szZipFilePath);
     if(!f.exists())
