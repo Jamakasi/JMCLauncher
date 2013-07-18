@@ -93,13 +93,6 @@ public class Util
       dis.readFully(bytes);
       dis.close();
 
-      //Certificate c = certs[0];
-      //PublicKey pk = c.getPublicKey();
-      //byte[] data = pk.getEncoded();
-
-      //for (int i = 0; i < data.length; i++) {
-        //if (data[i] == bytes[i]) continue; throw new RuntimeException("Public key mismatch");
-      //}
 
       DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
       wr.writeBytes(urlParameters);

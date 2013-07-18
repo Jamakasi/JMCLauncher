@@ -16,6 +16,8 @@ public class Config {
   public static String localworkdir = "pantheria";
   //Ссылка до новостей
  public static String NewsURL = "http://pantheria.ru/MineCraft/news.php"; 
+ //Хост указывать без http://
+ public static String host = "pantheria.ru"; 
  //Ссылка до регистрации
  public static String RegURL = "http://pantheria.ru/index.php?mode=start";
  //Ссылка до страницы скачивания лаунчера

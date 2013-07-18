@@ -10,14 +10,14 @@ import java.io.FileOutputStream;
 import java.io.FilePermission;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
+//import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
-import java.net.JarURLConnection;
+//import java.net.JarURLConnection;
 import java.net.SocketPermission;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -30,19 +30,21 @@ import java.security.PermissionCollection;
 import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
 import java.security.SecureClassLoader;
-import java.security.cert.Certificate;
+//import java.security.cert.Certificate;
 import java.util.Enumeration;
 import java.util.Properties;
-import java.util.StringTokenizer;
+//import java.util.StringTokenizer;
 import java.util.Vector;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
+//import java.util.jar.JarEntry;
+//import java.util.jar.JarFile;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Pack200;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+
 import SevenZip.LzmaAlone;
+//import com.sun.xml.internal.ws.util.StringUtils;
 
 public class GameUpdater
   implements Runnable
@@ -144,18 +146,6 @@ public int percentage;
     return "Неизвестное положение";
   }
 
-/*  protected String trimExtensionByCapabilities(String file)
-  {
-    if (!pack200Supported) {
-      file = file.replaceAll(".pack", "");
-    }
-
-    if (!lzmaSupported) {
-      file = file.replaceAll(".lzma", "");
-    }
-    return file;
-  }*/
-
   protected void loadJarURLs() throws Exception {
     state = 2;
     
@@ -165,10 +155,37 @@ public int percentage;
     //# Откуда скачивать
     URL path = new URL((Config.CDwlUrl+Config.workFolderServers[Config.CurrentServer])+ '/');
     //System.out.println(path.toString());
+     
+    //Слишком топорно, переписать позже
+    /*BrainUpdater BUpd = new BrainUpdater();
+    int counter = 0;
+    if (!BUpd.CheckMD5Matches("client.zip")){
+       counter++;     
+    }
+    if (!BUpd.CheckMD5Matches("custom.zip")){
+       counter++;     
+    }
+    if (!BUpd.CheckMD5Matches("minecraft.jar")){
+       counter++;     
+    }
+    urlList = new URL[counter];  //3
+    for (int i =0; i<=counter-1;i++){
+     
+                if (!BUpd.CheckMD5Matches("client.zip")){
+                urlList[i] = new URL(path, "client.zip");     
+                }
+                if (!BUpd.CheckMD5Matches("custom.zip")){
+                urlList[i] = new URL(path, "custom.zip");   
+                }
+                if (!BUpd.CheckMD5Matches("minecraft.jar")){
+                urlList[i] = new URL(path, "minecraft.jar");     
+                }
+    }*/
     urlList = new URL[3];
-    urlList[0] = new URL(path, "client.zip");
-    urlList[1] = new URL(path, "custom.zip");
-    urlList[2] = new URL(path, "minecraft.jar");
+    urlList[0] = new URL(path, "client.zip");     
+    urlList[1] = new URL(path, "custom.zip");   
+    urlList[2] = new URL(path, "minecraft.jar");   
+    
     //String osName = System.getProperty("os.name");
   }
 
@@ -215,7 +232,6 @@ public int percentage;
 
             downloadJars(path);
             extractJars(path);
-            //extractNatives(path);
 
             if (latestVersion != null) {
               percentage = 90;
@@ -292,7 +308,7 @@ private void checkShouldUpdate() {
             perms = (PermissionCollection)method.invoke(getClass().getClassLoader(), new Object[] { 
               codesource });
 
-            String host = Config.LDwlURL;
+            String host = Config.host;
 
             if ((host != null) && (host.length() > 0))
             {
@@ -312,7 +328,7 @@ private void checkShouldUpdate() {
     String path = dir.getAbsolutePath();
     if (!path.endsWith(File.separator)) path = path + File.separator;
     unloadNatives(path);
-
+System.out.println("ПУТЬ К "+ path);
     System.setProperty("org.lwjgl.librarypath", path + "natives");
     System.setProperty("net.java.games.input.librarypath", path + "natives");
 
@@ -356,6 +372,13 @@ private void checkShouldUpdate() {
   {
     File versionFile = new File(path, "md5s");
     Properties md5s = new Properties();
+    
+    BrainUpdater BUpd = new BrainUpdater();
+    boolean[] skipdwl = new boolean[3];
+    String tempstr = new String();
+    String tempstrt = new String();
+    
+    
     if (versionFile.exists()) {
       try {
         FileInputStream fis = new FileInputStream(versionFile);
@@ -381,21 +404,31 @@ private void checkShouldUpdate() {
         if (code / 100 == 3) {
           skip[i] = true;
         }
+        //brainupdater
+        //skipdwl[i] = false;
+        tempstr =urlList[i].getFile();
+        tempstrt = tempstr.substring( tempstr.lastIndexOf('/')+1, tempstr.length() );
+        if (BUpd.CheckMD5Matches(tempstrt)!= false) {
+            
+          skip[i] = true;
+          //System.out.println("Пропущено из списка загрузок" + i);
+        }
+        //System.out.println("ИЗВЛЕЧЕННОЕ ИМЯ ФАЙЛА ИЗ ССЫЛКИ ="+tempstrt+"|");
       }
       fileSizes[i] = urlconnection.getContentLength();
       totalSizeDownload += fileSizes[i];
     }
-
     int initialPercentage = this.percentage = 10;
 
     byte[] buffer = new byte[65536];
     for (int i = 0; i < urlList.length; i++) {
+        boolean downloadFile = true;
       if (skip[i] != false) {
         percentage = (initialPercentage + fileSizes[i] * 45 / totalSizeDownload);
+      //}
+      
+        downloadFile = false;
       }
-
-        boolean downloadFile = true;
-
         while (downloadFile) {
           downloadFile = false;
 
@@ -412,6 +445,8 @@ private void checkShouldUpdate() {
           }
 
           String currentFile = getFileName(urlList[i]);
+          
+          
           InputStream inputstream = getJarInputStream(currentFile, urlconnection);
           
           FileOutputStream fos = new FileOutputStream(path + currentFile);
@@ -453,6 +488,7 @@ private void checkShouldUpdate() {
 
           }
           }
+    
     }
 
   protected InputStream getJarInputStream(String currentFile, final URLConnection urlconnection)
@@ -499,7 +535,6 @@ private void checkShouldUpdate() {
       }
       throw new Exception("Unable to download " + currentFile);
     }
-
     return is[0];
   }
 
@@ -637,8 +672,7 @@ protected void UnZip(String ZipName) throws PrivilegedActionException
 	"\nNot file: " + szZipFilePath);
     }
     
-    System.out.println(
-      "Enter path to extract files: ");
+    //System.out.println("Enter path to extract files: ");
     szExtractPath = path;
     
     File f1 = new File(szExtractPath);
@@ -678,7 +712,7 @@ protected void UnZip(String ZipName) throws PrivilegedActionException
       }
       
       zf.close();
-      System.out.println("Done!");
+      //System.out.println("Done!");
     }
     catch(Exception ex)
     {
@@ -711,13 +745,12 @@ protected void UnZip(String ZipName) throws PrivilegedActionException
     else	  
       szEntryDir = "";
     
-    System.out.print(szDstName);
+    //System.out.print(szDstName);
     long nSize = ze.getSize();
     long nCompressedSize = 
       ze.getCompressedSize();
     
-    System.out.println(" " + nSize + " (" +
-      nCompressedSize + ")");  
+    //System.out.println(" " + nSize + " (" +      nCompressedSize + ")");  
   
     try
     {
