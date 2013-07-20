@@ -1,0 +1,15 @@
+version: 13
+released: 2013-07-20
+workdir: pantheria
+mainwindowtitle: Pantheria launcher
+newsurl: http://pantheria.ru/MineCraft/news.php
+clientnames:
+   - Techno 1.4.7
+   - Vanila 1.6.2
+clientdirnames:
+   - techno147
+   - vanila162   
+authurl: http://pantheria.ru/MineCraft/auth.php
+regurl: http://pantheria.ru/index.php?mode=start
+launcherdownloadlink: http://pantheria.ru/index.php?mode=start
+clientdownloadroot: http://pantheria.ru/MineCraft/MinecraftDownload/NewLauncher/

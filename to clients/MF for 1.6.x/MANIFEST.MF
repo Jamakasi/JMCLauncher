@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: net.minecraft.client.Main
-Class-Path: argo.jar bcprov.jar codecjorbis.jar codecwav.jar commons-io.jar commons-lang.jar gson.jar guava.jar jinput.jar jopt-simple.jar jutils.jar libraryjavasound.jar librarylwjglopenal.jar lwjgl.jar lwjgl_util.jar soundsystem.jar
-
-
-
