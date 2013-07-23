@@ -8,19 +8,17 @@ package jmc.minecraft.utils;
 import static java.lang.String.format;
 
 import java.util.Date;
-//import java.util.Map;
+
 /**
  * @author DimanA90
  * @Bean standart
  * @Get all core parametrs
  */
-
 public class CoreConfig {
     private Date released;
     private String version;
     private String workdir;
     private String mainwindowtitle;
-    //private CoreConfig connection;
     private String newsurl;
     private String authurl;
     private String regurl;
@@ -28,7 +26,6 @@ public class CoreConfig {
     private String clientdownloadroot;
     private String[] clientnames;
     private String[] clientdirnames;
-    //private Map< String, String > users;
  
     /*
      * Get
@@ -108,11 +105,6 @@ public class CoreConfig {
  
  
     @Override
-    /*    private String newsurl;
-    private String authurl;
-    private String regurl;
-    private String launcherdownloadlink;
-    private String clientdownloadroot;*/
     public String toString() {
         return new StringBuilder()
             .append( format( "Version: %s\n", version ) )

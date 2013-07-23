@@ -31,10 +31,15 @@ public class GlobalVar {
     
     //Do not touch
     //User info
-    public static String userName;
+    public static String userName = "User name";
+    public static String password = "password";
+    public static String Ram = "512";
     public static String latestVersion;
     public static String downloadTicket;
     public static String sessionId;
+    public static String clientinfo;
+    public static String[] addons;
+    public static String[] addonsinfo;
     
-    public static int CurrentServer;   
+    public static int CurrentServer = 0;
 }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package jmc.minecraft.gui;
+package jmc.minecraft;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -12,7 +12,7 @@ import java.awt.Image;
 import java.awt.geom.Point2D;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import jmc.minecraft.LauncherInit;
+
 
 public class TexturedPanel extends JPanel
 {
@@ -24,7 +24,7 @@ public class TexturedPanel extends JPanel
     setOpaque(true);
     try
     {
-      bgImage = ImageIO.read(LauncherInit.class.getResource("dirt.png")).getScaledInstance(32, 32, 16);
+      bgImage = ImageIO.read(TexturedPanel.class.getResource("dirt.png")).getScaledInstance(32, 32, 16);
     } catch (Exception e) {
       e.printStackTrace();
     }
