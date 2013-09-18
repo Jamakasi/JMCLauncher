@@ -12,8 +12,10 @@ import static java.lang.String.format;
  */
 public class ClientInfoConfig {
     private String info;
+    private boolean oldminecraft;
     private String[] addons;
     private String[] addonsinfo;
+    private String[] archivesList;
  
     /*
      * Get vars
@@ -21,11 +23,17 @@ public class ClientInfoConfig {
     public String getInfo() {
         return info;
     }
+    public boolean getOldminecraft(){
+        return oldminecraft;
+    }
     public String[] getAddons() {
         return addons;
     }
     public String[] getAddonsinfo() {
         return addonsinfo;
+    }
+    public String[] getArchivesList() {
+        return archivesList;
     }
     /*
      * Set vars
@@ -33,11 +41,17 @@ public class ClientInfoConfig {
     public void setInfo(String Info) {
         this.info = Info;
     }
+    public void setOldminecraft(boolean Oldminecraft){
+        this.oldminecraft = Oldminecraft;
+    }
     public void setAddons(String[] Addons) {
         this.addons = Addons;
     }
     public void setAddonsinfo(String[] AddonsInfo) {
         this.addonsinfo = AddonsInfo;
+    }
+    public void setArchivesList(String[] archives) {
+        this.archivesList = archives;
     }
  
     @Override

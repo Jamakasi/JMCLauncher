@@ -22,6 +22,7 @@ public class CoreConfig {
     private String newsurl;
     private String authurl;
     private String regurl;
+    private String host;
     private String launcherdownloadlink;
     private String clientdownloadroot;
     private String[] clientnames;
@@ -63,6 +64,9 @@ public class CoreConfig {
     public String getClientdownloadroot() {
         return clientdownloadroot;
     }
+    public String getHost() {
+        return host;
+    }
     
     /*
      * Set
@@ -102,12 +106,16 @@ public class CoreConfig {
     public void setClientdownloadroot(String Clientdownloadroot) {
         this.clientdownloadroot = Clientdownloadroot;
     }
+     public void setHost(String Host) {
+        this.host = Host;
+    }
  
  
     @Override
     public String toString() {
         return new StringBuilder()
             .append( format( "Version: %s\n", version ) )
+            .append( format( "Host: %s\n", host ) )
             .append( format( "Released: %s\n", released ) )
             .append( format( "WorkDir: %s\n", workdir ) )
             .append( format( "NewsUrl: %s\n", newsurl ) )

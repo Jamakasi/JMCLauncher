@@ -2,6 +2,7 @@ version: 13
 released: 2013-07-20
 workdir: pantheria
 mainwindowtitle: Pantheria launcher
+host: http://pantheria.ru
 newsurl: http://pantheria.ru/MineCraft/news.php
 clientnames:
    - Techno 1.4.7

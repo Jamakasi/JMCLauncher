@@ -5,6 +5,7 @@
 package jmc.minecraft;
 
 
+import java.awt.BorderLayout;
 import java.io.IOException;
 import jmc.minecraft.utils.ConfigLoaderCore;
 import jmc.minecraft.TexturedPanel;
@@ -12,8 +13,13 @@ import jmc.minecraft.utils.GlobalVar;
 import jmc.minecraft.utils.Utils;
 import jmc.minecraft.Options;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -32,8 +38,14 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
+                /*
+                 * Check connect to host
+                 */
+                if(!Utils.isOnline()){
+                    GlobalVar.isOnline = false;
+                    SetStatus("Оффлайн");
+        }else GlobalVar.isOnline = true;
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +55,7 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PanelMain = new javax.swing.JPanel();
+        PanelMain = new TexturedPanel();
         panelNews = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         EditorPaneNews = new javax.swing.JEditorPane();
@@ -61,6 +73,7 @@ public class MainForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TextPaneClientInfo = new javax.swing.JTextPane();
         LabelRegistration = new javax.swing.JLabel();
+        LabelStatusText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(GlobalVar.MainWndTitle);
@@ -105,13 +118,18 @@ public class MainForm extends javax.swing.JFrame {
         );
         panelNewsLayout.setVerticalGroup(
             panelNewsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+            .addGroup(panelNewsLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         PanelMain.add(panelNews);
 
         panelControls.setBackground(new java.awt.Color(204, 204, 204));
         panelControls.setToolTipText("");
+        panelControls.setMaximumSize(new java.awt.Dimension(231, 32767));
+        panelControls.setName(""); // NOI18N
 
         LabelUsername.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         LabelUsername.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,16 +142,32 @@ public class MainForm extends javax.swing.JFrame {
         labelPassword.setFocusable(false);
 
         textFieldUsername.setText(GlobalVar.userName);
+        textFieldUsername.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldUsernameFocusLost(evt);
+            }
+        });
 
         PasswordField.setText(GlobalVar.password);
+        PasswordField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PasswordFieldFocusLost(evt);
+            }
+        });
 
         CheckBoxSave.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         CheckBoxSave.setForeground(new java.awt.Color(255, 255, 255));
+        CheckBoxSave.setSelected(true);
         CheckBoxSave.setText("Запомнить");
         CheckBoxSave.setToolTipText("");
         CheckBoxSave.setOpaque(false);
 
         ButtonLogin.setText("Играть");
+        ButtonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonLoginActionPerformed(evt);
+            }
+        });
 
         ButtonSetting.setText("Настройки");
         ButtonSetting.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -143,6 +177,12 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         ButtonAddons.setText("Дополнения");
+        ButtonAddons.setEnabled(false);
+        ButtonAddons.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAddonsActionPerformed(evt);
+            }
+        });
 
         LabelStatus.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         LabelStatus.setForeground(new java.awt.Color(255, 0, 0));
@@ -175,14 +215,24 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        LabelStatusText.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        LabelStatusText.setForeground(new java.awt.Color(255, 0, 0));
+        LabelStatusText.setText("Онлайн");
+        LabelStatusText.setFocusable(false);
+        LabelStatusText.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout panelControlsLayout = new javax.swing.GroupLayout(panelControls);
         panelControls.setLayout(panelControlsLayout);
         panelControlsLayout.setHorizontalGroup(
             panelControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelControlsLayout.createSequentialGroup()
+            .addGroup(panelControlsLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(LabelRegistration)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelControlsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelControlsLayout.createSequentialGroup()
+                .addGroup(panelControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelControlsLayout.createSequentialGroup()
                         .addGroup(panelControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LabelUsername)
                             .addComponent(labelPassword))
@@ -190,22 +240,21 @@ public class MainForm extends javax.swing.JFrame {
                         .addGroup(panelControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(PasswordField)
                             .addComponent(textFieldUsername)))
-                    .addComponent(ComboBoxSelectClient, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LabelStatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelControlsLayout.createSequentialGroup()
+                    .addComponent(ComboBoxSelectClient, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addGroup(panelControlsLayout.createSequentialGroup()
                         .addGroup(panelControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ButtonSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CheckBoxSave))
                         .addGap(18, 18, 18)
                         .addGroup(panelControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ButtonAddons, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                            .addComponent(ButtonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(ButtonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(panelControlsLayout.createSequentialGroup()
+                        .addComponent(LabelStatus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LabelStatusText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(panelControlsLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(LabelRegistration)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelControlsLayout.setVerticalGroup(
             panelControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +278,9 @@ public class MainForm extends javax.swing.JFrame {
                     .addComponent(ButtonSetting)
                     .addComponent(ButtonAddons))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LabelStatus)
+                .addGroup(panelControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(LabelStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LabelStatusText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ComboBoxSelectClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -243,7 +294,7 @@ public class MainForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
+            .addComponent(PanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,6 +304,9 @@ public class MainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void SetStatus(String message){
+                LabelStatusText.setText(message);
+    }
     private void ComboBoxSelectClientItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboBoxSelectClientItemStateChanged
         // TODO add your handling code here:
         GlobalVar.CurrentServer = ComboBoxSelectClient.getSelectedIndex();
@@ -277,13 +331,112 @@ public class MainForm extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_LabelRegistrationMouseClicked
 
+    private void ButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLoginActionPerformed
+        //RunGame.Init();
+        
+        FormStageTwo();  ///Пиздец бля
+    }//GEN-LAST:event_ButtonLoginActionPerformed
+
+    private void textFieldUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldUsernameFocusLost
+        GlobalVar.userName = textFieldUsername.getText();
+    }//GEN-LAST:event_textFieldUsernameFocusLost
+
+    private void PasswordFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFieldFocusLost
+        GlobalVar.password = PasswordField.getText();
+    }//GEN-LAST:event_PasswordFieldFocusLost
+
+    private void ButtonAddonsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddonsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonAddonsActionPerformed
+
+    public void FormStageTwo(){
+         PanelMain.removeAll();
+         //////////////////////////////
+        final JProgressBar ProgressBarCurrent = new javax.swing.JProgressBar();
+        final JProgressBar ProgressBarTotal = new javax.swing.JProgressBar();
+       /* final JLabel LabelStatus = new javax.swing.JLabel();
+		
+		LabelStatus.setText("Статус");*/
+                ProgressBarCurrent.setStringPainted(true);
+                ProgressBarTotal.setStringPainted(true);
+
+
+        javax.swing.GroupLayout PanelMain1Layout = new javax.swing.GroupLayout(PanelMain);
+        PanelMain.setLayout(PanelMain1Layout);
+        PanelMain1Layout.setHorizontalGroup(
+            PanelMain1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelMain1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelMain1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ProgressBarTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ProgressBarCurrent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+           /* .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMain1Layout.createSequentialGroup()
+                .addContainerGap(297, Short.MAX_VALUE)
+                .addComponent(LabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(293, 293, 293))*/
+        );
+        PanelMain1Layout.setVerticalGroup(
+            PanelMain1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelMain1Layout.createSequentialGroup()
+                /*.addGap(124, 124, 124)
+                .addComponent(LabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)*/
+                .addGap(44, 44, 44)
+                .addComponent(ProgressBarCurrent, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ProgressBarTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(253, Short.MAX_VALUE))
+        );
+		
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 278, Short.MAX_VALUE))
+        );         
+         
+         
+         //////////////////////////////
+         /*JLabel imageLabel = new JLabel();
+                final JLabel LabelInfo = new JLabel();
+                final JProgressBar progressBarTotal = new JProgressBar();
+                final JProgressBar progressBarCurrent = new JProgressBar();
+                
+                        
+                         progressBarTotal.setStringPainted(true);
+                         progressBarTotal.setMinimum(0);
+                         progressBarTotal.setMaximum(100);
+                         
+                         progressBarCurrent.setStringPainted(true);
+                         progressBarCurrent.setMinimum(0);
+                         progressBarCurrent.setMaximum(100);
+         ImageIcon ii = new ImageIcon(this.getClass().getResource("Loading.gif"));
+         imageLabel.setIcon(ii);
+         PanelMain.add(imageLabel, BorderLayout.CENTER);
+         PanelMain.setLayout(new BorderLayout(5,5));
+         PanelMain.add(LabelInfo, BorderLayout.WEST);
+         PanelMain.add(progressBarCurrent,BorderLayout.CENTER);
+         PanelMain.add(progressBarTotal,BorderLayout.CENTER);*/
+
+
+         
+         this.revalidate();
+         this.repaint();
+
+        RunGame.Init(ProgressBarCurrent,ProgressBarTotal);
+    }
+    
     /**
      * @param args the command line arguments
      */
     
     public static void main(String args[]) throws ClassNotFoundException {
-        
-
              /*
              * Load core config
              */
@@ -296,7 +449,7 @@ public class MainForm extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -311,15 +464,16 @@ public class MainForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        }*/
         //</editor-fold>
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new MainForm().setVisible(true);
             }
         });
-        try {
+        /*try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (InstantiationException ex) {
             Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -327,34 +481,27 @@ public class MainForm extends javax.swing.JFrame {
             Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAddons;
     private javax.swing.JButton ButtonLogin;
     private javax.swing.JButton ButtonSetting;
     private javax.swing.JCheckBox CheckBoxSave;
-    private javax.swing.JComboBox ComboBoxSelectClient;
+    public javax.swing.JComboBox ComboBoxSelectClient;
     private javax.swing.JEditorPane EditorPaneNews;
     private javax.swing.JLabel LabelRegistration;
     private javax.swing.JLabel LabelStatus;
+    public javax.swing.JLabel LabelStatusText;
     private javax.swing.JLabel LabelUsername;
     private javax.swing.JPanel PanelMain;
-    private javax.swing.JPasswordField PasswordField;
+    public javax.swing.JPasswordField PasswordField;
     public javax.swing.JTextPane TextPaneClientInfo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JPanel panelControls;
     private javax.swing.JPanel panelNews;
-    private javax.swing.JTextField textFieldUsername;
+    public javax.swing.JTextField textFieldUsername;
     // End of variables declaration//GEN-END:variables
 }
-/*
-*Чтение инфы о клиента и списка дополнений с описанием
-*Передаем в функцию имяклиента(индексвыбора)
-* читаем имяклиента.yml
-* создаем поток и отображаем инфу как html страничку
-*---------------
-* дополнения оставим напотом
- */

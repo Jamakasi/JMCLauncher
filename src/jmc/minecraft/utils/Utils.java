@@ -7,12 +7,26 @@ package jmc.minecraft.utils;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.security.AccessController;
+import java.security.PrivilegedActionException;
+import java.security.PrivilegedExceptionAction;
+import java.util.Enumeration;
+import java.util.Vector;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
 
 /**
  *
@@ -23,11 +37,11 @@ public class Utils {
   private static File workDir = null;
     
     
-  private static enum OS
+  public static enum OS
   {
     linux, solaris, windows, macos, unknown;
   }
-  private static OS getPlatform() {
+  public static OS getPlatform() {
     String osName = System.getProperty("os.name").toLowerCase();
     if (osName.contains("win")) return OS.windows;
     if (osName.contains("mac")) return OS.macos;
@@ -143,5 +157,90 @@ public class Utils {
 
   public static boolean isEmpty(String str) {
     return (str == null) || (str.length() == 0);
-  } 
+  }
+  
+  public static boolean isOnline() {
+    Boolean result = false;
+    HttpURLConnection con = null;
+    try {
+        // HttpURLConnection.setFollowRedirects(false);
+        // HttpURLConnection.setInstanceFollowRedirects(false)
+        con = (HttpURLConnection) new URL(GlobalVar.HostUrl).openConnection();
+        con.setRequestMethod("HEAD");
+        result = (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        if (con != null) {
+            try {
+                con.disconnect();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    return result;
+}
+ 
+public static long downloadFilesSize(String strURL) {
+        try {
+            URL connection = new URL(strURL);
+            HttpURLConnection urlconn;
+            urlconn = (HttpURLConnection) connection.openConnection();
+            urlconn.setRequestMethod("GET");
+            urlconn.connect();
+            
+            return urlconn.getContentLength();
+        } catch (IOException e) {
+            System.out.println(e);
+            return 0;
+        }
+    }  
+  
+  public static boolean login(String userName, String password) 
+{
+    try {
+      String parameters = "user=" + URLEncoder.encode(userName, "UTF-8") + "&password=" + URLEncoder.encode(password, "UTF-8") + "&version=" + URLEncoder.encode(GlobalVar.Version, "UTF-8");
+      String result = Utils.excutePost(GlobalVar.AuthURL, parameters); 
+      if (!result.contains(":")) {
+        if (result.trim().equals("Bad login")) {
+          JOptionPane.showMessageDialog( null,
+                    "Неправильный логин или пароль!",
+                    "Ошибка",
+                    JOptionPane.WARNING_MESSAGE);
+                 return false;
+        } else if (result.trim().equals("Old version")) {
+                    JOptionPane.showMessageDialog( null,
+                    "Нужно обновить лаунчер!",
+                    "Ошибка",
+                    JOptionPane.WARNING_MESSAGE);
+                        openLink(new URI(GlobalVar.DownloadNewLauncherURL));
+                        System.exit(0); //Close launcher and open download launcher link
+                 return false;
+        } else {
+                    JOptionPane.showMessageDialog( null,
+                    result,
+                    "Неизвестная ошибка",
+                    JOptionPane.ERROR_MESSAGE);
+                 return false;
+        }
+      }
+      String[] values = result.split(":");
+
+      GlobalVar.userName = values[2].trim();
+      GlobalVar.latestVersion = values[0].trim();
+      GlobalVar.downloadTicket = values[1].trim();
+      GlobalVar.sessionId = values[3].trim();
+      
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
+}
+  
+
+  
+
+
 }

@@ -1,7 +1,13 @@
-info: <font color=\"#808080\">Самый технологичный.</br>Версия 1.4.7</br>Моды:</br>-RedPower2</br>-Industrial craft2</br>-Forestry</br>-BuildCraft</font>
+﻿info: <body text="#333333" border bgcolor="#cccccc" ><center><p><font size="5">Самый технологичный.</font><br/><small><font color="#CC0000">Версия 1.4.7</font></small></p><p><strong>Моды:</strong><div>RedPower2</div><div>Industrial craft2</div><div>Forestry</div><div>BuildCraft</div></p></center></body>
+oldminecraft: true
 addons: 
     - nei
     - minimap
 addonsinfo:
     - Самый удобный мод для просмотра всех блоков и их рецептов крафта
     - Удобная миникарта, масса настроек
+archivesList:
+- bin.zip
+- content.zip
+- configs.zip
+- mods.zip 

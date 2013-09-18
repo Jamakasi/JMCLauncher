@@ -16,6 +16,7 @@ public class LauncherConfig {
     private String username;
     private String password;
     private String ram;
+    private int ramindex;
     private int currentclient;
  
     /*
@@ -33,6 +34,9 @@ public class LauncherConfig {
     public int getCurrentclient() {
         return currentclient;
     }
+    public int getRamindex() {
+        return ramindex;
+    }
     /*
      * Set vars
      */
@@ -48,7 +52,10 @@ public class LauncherConfig {
     public void setCurrentclient(int Currentclient) {
         this.currentclient = Currentclient;
     }
- 
+    public void setRamindex(int Ramindex) {
+        this.ramindex = Ramindex;
+    }
+
     @Override
     public String toString() {
         return new StringBuilder()

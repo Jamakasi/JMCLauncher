@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="title" type="java.lang.String" value="&#x41d;&#x430;&#x441;&#x442;&#x440;&#x43e;&#x439;&#x43a;&#x438;"/>
     <Property name="resizable" type="boolean" value="false"/>
@@ -24,12 +24,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="PanelOptions" alignment="0" min="-2" max="-2" attributes="0"/>
+          <Component id="PanelOptions" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="PanelOptions" min="-2" max="-2" attributes="0"/>
+          <Component id="PanelOptions" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -40,19 +40,36 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                  <Component id="LabelRam" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="TextFieldRam" min="-2" pref="74" max="-2" attributes="0"/>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="ButtonOpenClientDir" max="32767" attributes="0"/>
-                      <Component id="ButtonForceUpdate" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                          <Component id="LabelRam" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="ComboBoxRam" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="ButtonOpenClientDir" alignment="1" pref="212" max="32767" attributes="0"/>
+                                  <Component id="ButtonSaveRam" alignment="1" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" pref="209" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -62,13 +79,21 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="LabelRam" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TextFieldRam" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ComboBoxRam" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="ButtonOpenClientDir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="ButtonForceUpdate" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <Component id="ButtonSaveRam" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="18" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -79,20 +104,68 @@
             <Property name="text" type="java.lang.String" value="&#x412;&#x44b;&#x434;&#x435;&#x43b;&#x44f;&#x435;&#x43c;&#x44b;&#x439; &#x440;&#x430;&#x437;&#x43c;&#x435;&#x440; &#x43f;&#x430;&#x43c;&#x44f;&#x442;&#x438; &#x438;&#x433;&#x440;&#x435;(Mb):"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TextFieldRam">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="512"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="ButtonOpenClientDir">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x41e;&#x442;&#x43a;&#x440;&#x44b;&#x442;&#x44c; &#x43f;&#x430;&#x43f;&#x43a;&#x443; &#x442;&#x435;&#x43a;&#x443;&#x449;&#x435;&#x433;&#x43e; &#x43a;&#x43b;&#x438;&#x435;&#x43d;&#x442;&#x430;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="ButtonForceUpdate">
+        <Component class="javax.swing.JButton" name="ButtonSaveRam">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x41f;&#x440;&#x438;&#x43d;&#x443;&#x434;&#x438;&#x442;&#x435;&#x43b;&#x44c;&#x43d;&#x43e; &#x43e;&#x431;&#x43d;&#x43e;&#x432;&#x438;&#x442;&#x44c; &#x43a;&#x43b;&#x438;&#x435;&#x43d;&#x442;"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonSaveRamMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x41e; &#x43f;&#x440;&#x43e;&#x433;&#x440;&#x430;&#x43c;&#x43c;&#x435;:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x423;&#x43d;&#x438;&#x432;&#x435;&#x440;&#x441;&#x430;&#x43b;&#x44c;&#x43d;&#x44b;&#x439; &#x43b;&#x430;&#x443;&#x43d;&#x447;&#x435;&#x440; JMCLauncher"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x420;&#x430;&#x437;&#x440;&#x430;&#x431;&#x43e;&#x442;&#x447;&#x438;&#x43a;: &#x410;&#x43b;&#x435;&#x43a;&#x441;&#x430;&#x43d;&#x434;&#x440;&#x43e;&#x432; &#x414;&#x43c;&#x438;&#x442;&#x440;&#x438;&#x439;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Email: dimana77@gmail.com   Skype: dimana19901"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="ComboBoxRam">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="16">
+                <StringItem index="0" value="64m"/>
+                <StringItem index="1" value="128m"/>
+                <StringItem index="2" value="256m"/>
+                <StringItem index="3" value="512m"/>
+                <StringItem index="4" value="768m"/>
+                <StringItem index="5" value="1024m"/>
+                <StringItem index="6" value="1536m"/>
+                <StringItem index="7" value="1792m"/>
+                <StringItem index="8" value="2048m"/>
+                <StringItem index="9" value="2304m"/>
+                <StringItem index="10" value="2560m"/>
+                <StringItem index="11" value="2816m"/>
+                <StringItem index="12" value="3072m"/>
+                <StringItem index="13" value="3584m"/>
+                <StringItem index="14" value="4096m"/>
+                <StringItem index="15" value="4608m"/>
+              </StringArray>
+            </Property>
+            <Property name="selectedIndex" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="GlobalVar.ramindex" type="code"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ComboBoxRamItemStateChanged"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

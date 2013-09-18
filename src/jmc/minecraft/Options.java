@@ -4,12 +4,16 @@
  */
 package jmc.minecraft;
 
+import jmc.minecraft.utils.GlobalVar;
+import jmc.minecraft.MainForm;
+
+
 /**
  *
  * @author DimanA90
  */
 public class Options extends javax.swing.JFrame {
-
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -22,37 +26,71 @@ public class Options extends javax.swing.JFrame {
 
         PanelOptions = new javax.swing.JPanel();
         LabelRam = new javax.swing.JLabel();
-        TextFieldRam = new javax.swing.JTextField();
         ButtonOpenClientDir = new javax.swing.JButton();
-        ButtonForceUpdate = new javax.swing.JButton();
+        ButtonSaveRam = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        ComboBoxRam = new javax.swing.JComboBox();
 
         setTitle("Настройки");
         setResizable(false);
 
         LabelRam.setText("Выделяемый размер памяти игре(Mb):");
 
-        TextFieldRam.setText("512");
-
         ButtonOpenClientDir.setText("Открыть папку текущего клиента");
 
-        ButtonForceUpdate.setText("Принудительно обновить клиент");
+        ButtonSaveRam.setText("Принудительно обновить клиент");
+        ButtonSaveRam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ButtonSaveRamMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setText("О программе:");
+
+        jLabel2.setText("Универсальный лаунчер JMCLauncher");
+
+        jLabel3.setText("Разработчик: Александров Дмитрий");
+
+        jLabel4.setText("Email: dimana77@gmail.com   Skype: dimana19901");
+
+        ComboBoxRam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "64m", "128m", "256m", "512m", "768m", "1024m", "1536m", "1792m", "2048m", "2304m", "2560m", "2816m", "3072m", "3584m", "4096m", "4608m" }));
+        ComboBoxRam.setSelectedIndex(GlobalVar.ramindex);
+        ComboBoxRam.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ComboBoxRamItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelOptionsLayout = new javax.swing.GroupLayout(PanelOptions);
         PanelOptions.setLayout(PanelOptionsLayout);
         PanelOptionsLayout.setHorizontalGroup(
             PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelOptionsLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(LabelRam)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextFieldRam, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelOptionsLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ButtonOpenClientDir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ButtonForceUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(63, 63, 63))
+                .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelOptionsLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(LabelRam)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ComboBoxRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelOptionsLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(ButtonOpenClientDir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                                .addComponent(ButtonSaveRam, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(PanelOptionsLayout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jLabel1))
+                    .addGroup(PanelOptionsLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel4)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         PanelOptionsLayout.setVerticalGroup(
             PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -60,12 +98,20 @@ public class Options extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelRam)
-                    .addComponent(TextFieldRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ComboBoxRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ButtonOpenClientDir)
                 .addGap(18, 18, 18)
-                .addComponent(ButtonForceUpdate)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(ButtonSaveRam)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -76,11 +122,22 @@ public class Options extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(PanelOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonSaveRamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonSaveRamMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_ButtonSaveRamMouseClicked
+
+    private void ComboBoxRamItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboBoxRamItemStateChanged
+        // TODO add your handling code here:
+        GlobalVar.Ram = ComboBoxRam.getSelectedItem().toString();
+        GlobalVar.ramindex = ComboBoxRam.getSelectedIndex();
+    }//GEN-LAST:event_ComboBoxRamItemStateChanged
 
     /**
      * Creates new form Options
@@ -98,10 +155,14 @@ public class Options extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonForceUpdate;
     private javax.swing.JButton ButtonOpenClientDir;
+    private javax.swing.JButton ButtonSaveRam;
+    private javax.swing.JComboBox ComboBoxRam;
     private javax.swing.JLabel LabelRam;
     private javax.swing.JPanel PanelOptions;
-    private javax.swing.JTextField TextFieldRam;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
