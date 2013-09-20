@@ -4,8 +4,12 @@
  */
 package jmc.minecraft;
 
+import java.io.File;
+import java.net.URI;
+import java.net.URL;
+
 import jmc.minecraft.utils.GlobalVar;
-import jmc.minecraft.MainForm;
+import jmc.minecraft.utils.Utils;
 
 
 /**
@@ -33,13 +37,20 @@ public class Options extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         ComboBoxRam = new javax.swing.JComboBox();
+        jLabelPermSize = new javax.swing.JLabel();
+        ComboBoxRam1 = new javax.swing.JComboBox();
 
         setTitle("Настройки");
         setResizable(false);
 
-        LabelRam.setText("Выделяемый размер памяти игре(Mb):");
+        LabelRam.setText("Выделяемый размер памяти игре(Xmx):");
 
         ButtonOpenClientDir.setText("Открыть папку текущего клиента");
+        ButtonOpenClientDir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ButtonOpenClientDirMouseClicked(evt);
+            }
+        });
 
         ButtonSaveRam.setText("Принудительно обновить клиент");
         ButtonSaveRam.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,33 +75,41 @@ public class Options extends javax.swing.JFrame {
             }
         });
 
+        jLabelPermSize.setText("Permament RAM (XX:MaxPermSize) (RAM/4)");
+
+        ComboBoxRam1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "32m", "64m", "128m", "256m", "512m" }));
+        ComboBoxRam1.setSelectedIndex(GlobalVar.ramPermindex);
+        ComboBoxRam1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ComboBoxRam1ItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelOptionsLayout = new javax.swing.GroupLayout(PanelOptions);
         PanelOptions.setLayout(PanelOptionsLayout);
         PanelOptionsLayout.setHorizontalGroup(
             PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelOptionsLayout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(PanelOptionsLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
                 .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ButtonSaveRam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ButtonOpenClientDir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(PanelOptionsLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(LabelRam)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ComboBoxRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelOptionsLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ButtonOpenClientDir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                                .addComponent(ButtonSaveRam, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(PanelOptionsLayout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jLabel1))
-                    .addGroup(PanelOptionsLayout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel4)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelPermSize)
+                            .addComponent(LabelRam))
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ComboBoxRam, 0, 61, Short.MAX_VALUE)
+                            .addComponent(ComboBoxRam1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         PanelOptionsLayout.setVerticalGroup(
             PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,11 +118,15 @@ public class Options extends javax.swing.JFrame {
                 .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelRam)
                     .addComponent(ComboBoxRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPermSize)
+                    .addComponent(ComboBoxRam1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(ButtonOpenClientDir)
                 .addGap(18, 18, 18)
                 .addComponent(ButtonSaveRam)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
@@ -111,14 +134,16 @@ public class Options extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(PanelOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,6 +164,21 @@ public class Options extends javax.swing.JFrame {
         GlobalVar.ramindex = ComboBoxRam.getSelectedIndex();
     }//GEN-LAST:event_ComboBoxRamItemStateChanged
 
+    private void ComboBoxRam1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboBoxRam1ItemStateChanged
+        // TODO add your handling code here:
+        GlobalVar.RamPerm = ComboBoxRam1.getSelectedItem().toString();
+        GlobalVar.ramPermindex = ComboBoxRam1.getSelectedIndex();
+    }//GEN-LAST:event_ComboBoxRam1ItemStateChanged
+
+    private void ButtonOpenClientDirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonOpenClientDirMouseClicked
+        // TODO add your handling code here:
+        try{
+        Utils.openLink(new URL("file://" + Utils.getWorkingDirectory().getAbsolutePath() + File.separator + GlobalVar.itemsServers[GlobalVar.CurrentServer] + File.separator).toURI() );
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_ButtonOpenClientDirMouseClicked
+
     /**
      * Creates new form Options
      */
@@ -158,11 +198,13 @@ public class Options extends javax.swing.JFrame {
     private javax.swing.JButton ButtonOpenClientDir;
     private javax.swing.JButton ButtonSaveRam;
     private javax.swing.JComboBox ComboBoxRam;
+    private javax.swing.JComboBox ComboBoxRam1;
     private javax.swing.JLabel LabelRam;
     private javax.swing.JPanel PanelOptions;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelPermSize;
     // End of variables declaration//GEN-END:variables
 }

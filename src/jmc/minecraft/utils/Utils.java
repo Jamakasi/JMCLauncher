@@ -197,7 +197,7 @@ public static long downloadFilesSize(String strURL) {
         }
     }  
   
-  public static boolean login(String userName, String password) 
+public static boolean login(String userName, String password) 
 {
     try {
       String parameters = "user=" + URLEncoder.encode(userName, "UTF-8") + "&password=" + URLEncoder.encode(password, "UTF-8") + "&version=" + URLEncoder.encode(GlobalVar.Version, "UTF-8");

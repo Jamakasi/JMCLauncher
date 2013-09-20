@@ -4,6 +4,7 @@
  */
 package jmc.minecraft.utils;
 
+//import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,8 +13,6 @@ import org.yaml.snakeyaml.Yaml;
 
 
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,6 +65,8 @@ public void saveUserConfig()
           uoconfig.setRam(GlobalVar.Ram);
           uoconfig.setRamindex(GlobalVar.ramindex);
           uoconfig.setCurrentclient(GlobalVar.CurrentServer);
+          uoconfig.setRamperm(GlobalVar.RamPerm);
+          uoconfig.setRampermindex(GlobalVar.ramPermindex);
 
           String output = new Yaml().dumpAsMap(uoconfig);
         try 
@@ -92,8 +93,10 @@ public void LoadUserConfig(){
                                 LauncherConfig uconfig = yamlu.loadAs(in, LauncherConfig.class);
                                 if (uconfig.getUsername()!=null)  GlobalVar.userName = uconfig.getUsername();
                                 if (uconfig.getPassword()!=null)  GlobalVar.password = uconfig.getPassword();
-                                if (uconfig.getRam()!=null)  GlobalVar.Ram = uconfig.getRam();
-                                GlobalVar.ramindex = uconfig.getRamindex();
+                                if (uconfig.getRam()!=null)       GlobalVar.Ram = uconfig.getRam();
+                                if (uconfig.getRamperm()!=null)   GlobalVar.RamPerm = uconfig.getRamperm();
+                                if (uconfig.getRamindex()!=-1)    GlobalVar.ramindex = uconfig.getRamindex();
+                                if (uconfig.getRampermindex()!=-1)GlobalVar.ramPermindex = uconfig.getRampermindex();
                                 GlobalVar.CurrentServer = uconfig.getCurrentclient();
             }
           //System.out.println(uconfig.toString()); 

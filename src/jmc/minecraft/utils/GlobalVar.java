@@ -46,6 +46,9 @@ public class GlobalVar {
     
     public static String Ram = "512m";
     public static int ramindex = 3;
+    public static String RamPerm = "256m";
+    public static int ramPermindex = 3;
+    
     public static boolean ForceUpdate = false;
     public static boolean isOnline;
     public static int CurrentServer = 0;

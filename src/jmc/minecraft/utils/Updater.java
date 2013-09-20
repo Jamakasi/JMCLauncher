@@ -22,11 +22,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import javax.swing.JLabel;
+//import javax.swing.JLabel;
 import javax.swing.JProgressBar;
-import jmc.minecraft.utils.GlobalVar;
-import jmc.minecraft.utils.mdsummcheker;
-import jmc.minecraft.utils.Utils;
+//import jmc.minecraft.utils.GlobalVar;
+//import jmc.minecraft.utils.mdsummcheker;
+//import jmc.minecraft.utils.Utils;
 import static jmc.minecraft.utils.Utils.getWorkingDirectory;
 
 /**

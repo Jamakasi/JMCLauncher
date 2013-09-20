@@ -4,7 +4,9 @@
  */
 package jmc.minecraft;
 
-import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.*;
+import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import jmc.minecraft.utils.ConfigLoaderCore;
 import jmc.minecraft.utils.GlobalVar;
@@ -20,11 +22,7 @@ public class RunGame {
    
  public static void Init(final JProgressBar progressCurrent,final JProgressBar progressBarTotal)
  {
-   if(GlobalVar.isOnline)// is Online?
-   {
-     if(Utils.login(GlobalVar.userName, GlobalVar.password))//Login succes ?
-     {
-         
+
         Thread myThready = new Thread(new Runnable()
         {
             public void run()
@@ -35,19 +33,15 @@ public class RunGame {
          Updater gup = new Updater();
          gup.Init(progressCurrent,progressBarTotal);
                 MCGameRuner grun = new MCGameRuner();
-                grun.LetsGame();
+                grun.LetsGame(true);
                 System.exit(1);
             }
         });
         myThready.start();
          
-     }else
-     {//Ничего не делаем
-     };         
-   }else  //Offline, run game offline
-   {
-       
-   }
+     
  }
 
+
+ 
 }

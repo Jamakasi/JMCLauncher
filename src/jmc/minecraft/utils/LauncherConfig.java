@@ -17,6 +17,8 @@ public class LauncherConfig {
     private String password;
     private String ram;
     private int ramindex;
+    private String ramperm;
+    private int rampermindex;
     private int currentclient;
  
     /*
@@ -31,11 +33,17 @@ public class LauncherConfig {
     public String getRam() {
         return ram;
     }
+    public String getRamperm() {
+        return ramperm;
+    }
     public int getCurrentclient() {
         return currentclient;
     }
     public int getRamindex() {
         return ramindex;
+    }
+    public int getRampermindex() {
+        return rampermindex;
     }
     /*
      * Set vars
@@ -49,11 +57,17 @@ public class LauncherConfig {
     public void setRam(String Ram) {
         this.ram = Ram;
     }
+    public void setRamperm(String Ramperm) {
+        this.ramperm = Ramperm;
+    }
     public void setCurrentclient(int Currentclient) {
         this.currentclient = Currentclient;
     }
     public void setRamindex(int Ramindex) {
         this.ramindex = Ramindex;
+    }
+    public void setRampermindex(int Rampermindex) {
+        this.rampermindex = Rampermindex;
     }
 
     @Override
