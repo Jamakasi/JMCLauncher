@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.8" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroupClientType">
+    </Component>
+    <Component class="javax.swing.JFileChooser" name="jFileChooserSelectDir">
+      <Properties>
+        <Property name="acceptAllFileFilterUsed" type="boolean" value="false"/>
+        <Property name="dialogTitle" type="java.lang.String" value="&#x412;&#x44b;&#x431;&#x435;&#x440;&#x435;&#x442;&#x435; &#x43f;&#x430;&#x43f;&#x43a;&#x443; &#x43a;&#x443;&#x434;&#x430; &#x431;&#x443;&#x434;&#x435;&#x442; &#x443;&#x441;&#x442;&#x430;&#x43d;&#x43e;&#x432;&#x43b;&#x435;&#x43d; &#x43b;&#x430;&#x443;&#x43d;&#x447;&#x435;&#x440; &#x441;&#x43e; &#x432;&#x441;&#x435;&#x43c;&#x438; &#x43a;&#x43e;&#x43c;&#x43f;&#x43e;&#x43d;&#x435;&#x43d;&#x442;&#x430;&#x43c;&#x438;"/>
+        <Property name="fileHidingEnabled" type="boolean" value="true"/>
+        <Property name="fileSelectionMode" type="int" value="1"/>
+      </Properties>
+    </Component>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" value="&#x41d;&#x430;&#x441;&#x442;&#x440;&#x43e;&#x439;&#x43a;&#x438;"/>
+    <Property name="resizable" type="boolean" value="false"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="PanelOptions" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="PanelOptions" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="PanelOptions">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jPanel1" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel1">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="&#x41a;&#x43b;&#x438;&#x435;&#x43d;&#x442;"/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jPanelClientType" max="32767" attributes="0"/>
+                          <Component id="ButtonOpenClientDir" alignment="0" max="32767" attributes="0"/>
+                          <Component id="ButtonForseUpdate" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="ButtonOpenClientDir" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="ButtonForseUpdate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jPanelClientType" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="ButtonOpenClientDir">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x41e;&#x442;&#x43a;&#x440;&#x44b;&#x442;&#x44c; &#x43f;&#x430;&#x43f;&#x43a;&#x443; &#x442;&#x435;&#x43a;&#x443;&#x449;&#x435;&#x433;&#x43e; &#x43a;&#x43b;&#x438;&#x435;&#x43d;&#x442;&#x430;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonOpenClientDirMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="ButtonForseUpdate">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x41f;&#x440;&#x438;&#x43d;&#x443;&#x434;&#x438;&#x442;&#x435;&#x43b;&#x44c;&#x43d;&#x43e; &#x43e;&#x431;&#x43d;&#x43e;&#x432;&#x438;&#x442;&#x44c; &#x442;&#x435;&#x43a;&#x443;&#x449;&#x438;&#x439; &#x43a;&#x43b;&#x438;&#x435;&#x43d;&#x442;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonForseUpdateMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonForseUpdateActionPerformed"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JPanel" name="jPanelClientType">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="&#x422;&#x438;&#x43f; &#x43a;&#x43b;&#x438;&#x435;&#x43d;&#x442;&#x430;"/>
+                  </Border>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="ConfigLoaderCore cf = new ConfigLoaderCore();&#xd;&#xa;cf.LoadModeConfig();&#xd;&#xa;if(GlobalVar.LauncherMode.contains(&quot;default&quot;)){&#xd;&#xa;    jRadioButtonDefault.setSelected(true);&#xd;&#xa;    jTextFieldInstPath.setEnabled(false);&#xd;&#xa;    jButtonBrowse.setEnabled(false);&#xd;&#xa;}else if(GlobalVar.LauncherMode.contains(&quot;portable&quot;)){&#xd;&#xa;    jRadioButtonPortable.setSelected(true);&#xd;&#xa;    jTextFieldInstPath.setEnabled(false);&#xd;&#xa;    jButtonBrowse.setEnabled(false);&#xd;&#xa;}else if(GlobalVar.LauncherMode.contains(&quot;installed&quot;)){&#xd;&#xa;    jRadioButtonInstalled.setSelected(true);&#xd;&#xa;    jTextFieldInstPath.setEnabled(true);&#xd;&#xa;    jTextFieldInstPath.setText(GlobalVar.LauncherStandalonePath);&#xd;&#xa;    jButtonBrowse.setEnabled(true);&#xd;&#xa;}&#xd;&#xa;"/>
+              </AuxValues>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jRadioButtonPortable" min="-2" max="-2" attributes="0"/>
+                              <Component id="jRadioButtonDefault" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jRadioButtonInstalled" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldInstPath" min="-2" pref="389" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jButtonBrowse" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jRadioButtonDefault" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jRadioButtonPortable" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jTextFieldInstPath" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jRadioButtonInstalled" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonBrowse" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JRadioButton" name="jRadioButtonDefault">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="buttonGroupClientType"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&#x41f;&#x43e; &#x443;&#x43c;&#x43e;&#x43b;&#x447;&#x430;&#x43d;&#x438;&#x44e;"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonDefaultActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="jRadioButtonPortable">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="buttonGroupClientType"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&#x41f;&#x43e;&#x440;&#x442;&#x430;&#x442;&#x438;&#x432;&#x43d;&#x44b;&#x439;"/>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonPortableActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="jRadioButtonInstalled">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="buttonGroupClientType"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&#x423;&#x441;&#x442;&#x430;&#x43d;&#x43e;&#x432;&#x43b;&#x435;&#x43d; &#x432;:"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonInstalledActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextFieldInstPath">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButtonBrowse">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&#x41e;&#x431;&#x437;&#x43e;&#x440;"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBrowseActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel2">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="&#x420;&#x430;&#x441;&#x448;&#x438;&#x440;&#x435;&#x43d;&#x43d;&#x430;&#x44f; &#x43d;&#x430;&#x441;&#x442;&#x440;&#x43e;&#x439;&#x43a;&#x430; &#x434;&#x43b;&#x44f; &#x432;&#x44b;&#x431;&#x440;&#x430;&#x43d;&#x43d;&#x43e;&#x433;&#x43e; &#x43a;&#x43b;&#x438;&#x435;&#x43d;&#x442;&#x430; &#x438;&#x433;&#x440;&#x44b;"/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelJavaPath" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabeArguments" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jTextFieldJavaArguments" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldJavaPath" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="CheckBoxExpertSettings" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
+                      <Component id="jButtonSaveSettings" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="CheckBoxExpertSettings" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelJavaPath" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldJavaPath" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabeArguments" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldJavaArguments" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonSaveSettings" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JCheckBox" name="CheckBoxExpertSettings">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x418;&#x441;&#x43f;&#x43e;&#x43b;&#x44c;&#x437;&#x43e;&#x432;&#x430;&#x442;&#x44c;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckBoxExpertSettingsActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="CheckBoxExpertSettings.setSelected(GlobalVar.ExpertSettings);&#xd;&#xa;jTextFieldJavaPath.setEnabled(CheckBoxExpertSettings.isSelected());&#xd;&#xa;jTextFieldJavaArguments.setEnabled(CheckBoxExpertSettings.isSelected());&#xd;&#xa;jLabeArguments.setEnabled(CheckBoxExpertSettings.isSelected());&#xd;&#xa;jLabelJavaPath.setEnabled(CheckBoxExpertSettings.isSelected());&#xd;&#xa;jTextAreaHelp.setEnabled(CheckBoxExpertSettings.isSelected());&#xd;&#xa;jButtonSaveSettings.setEnabled(CheckBoxExpertSettings.isSelected());&#xd;&#xa;jTextFieldJavaPath.setText(GlobalVar.JavaPath);&#xd;&#xa;jTextFieldJavaArguments.setText(GlobalVar.JavaVMArg);"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelJavaPath">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x41f;&#x443;&#x442;&#x44c; &#x434;&#x43e; java:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTextFieldJavaPath">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="&#x41d;&#x430;&#x43f;&#x440;&#x438;&#x43c;&#x435;&#x440; C:\u005cProgram Files\u005cJava\u005cjre7\u005cbin\u005cjava.exe&#xa;&#x415;&#x441;&#x43b;&#x438; &#x432; &#x43f;&#x443;&#x442;&#x438; &#x438;&#x43c;&#x435;&#x44e;&#x442;&#x441;&#x44f; &#x43f;&#x440;&#x43e;&#x431;&#x435;&#x43b;&#x44b; &#x442;&#x43e; &#x432;&#x441;&#x44e; &#x441;&#x442;&#x440;&#x43e;&#x43a;&#x443; &#x43d;&#x435;&#x43e;&#x431;&#x445;&#x43e;&#x434;&#x438;&#x43c;&#x43e; &#x437;&#x430;&#x43a;&#x43b;&#x44e;&#x447;&#x438;&#x442;&#x44c; &#x432; &#x43a;&#x43e;&#x432;&#x44b;&#x447;&#x43a;&#x438;, &#x43f;&#x435;&#x440;&#x435;&#x434; &#x43a;&#x430;&#x436;&#x434;&#x43e;&#x439; &#x43a;&#x43e;&#x432;&#x44b;&#x447;&#x43a;&#x43e;&#x439; &#x43e;&#x431;&#x44f;&#x437;&#x430;&#x442;&#x435;&#x43b;&#x44c;&#x43d;&#x43e;&#x441;&#x442;&#x430;&#x432;&#x438;&#x442;&#x44c; &#x43e;&#x431;&#x440;&#x430;&#x442;&#x43d;&#x44b;&#x439; &#x441;&#x43b;&#x435;&#x448; \u005c&quot;" containsInvalidXMLChars="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabeArguments">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x410;&#x440;&#x433;&#x443;&#x43c;&#x435;&#x43d;&#x442;&#x44b;:"/>
+                <Property name="toolTipText" type="java.lang.String" value="&#x41a;&#x43e;&#x43c;&#x430;&#x43d;&#x434;&#x44b; &#x434;&#x43b;&#x44f; &#x438;&#x43d;&#x438;&#x446;&#x438;&#x430;&#x43b;&#x438;&#x437;&#x430;&#x446;&#x438;&#x438; &#x44f;&#x432;&#x430; &#x43c;&#x430;&#x448;&#x438;&#x43d;&#x44b;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTextFieldJavaArguments">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="-Xms512m -Xmx512m"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="jTextAreaHelp">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Monospaced" size="12" style="0"/>
+                    </Property>
+                    <Property name="rows" type="int" value="5"/>
+                    <Property name="text" type="java.lang.String" value="&#x41d;&#x435;&#x43a;&#x442;&#x43e;&#x440;&#x44b;&#x435; &#x43a;&#x43e;&#x43c;&#x430;&#x43d;&#x434;&#x44b; &#x434;&#x43b;&#x44f; &#x430;&#x440;&#x433;&#x443;&#x43c;&#x435;&#x43d;&#x442;&#x43e;&#x432;:&#xa;-Xms &#x41f;&#x440;&#x438;&#x43c;&#x435;&#x440; -Xms256m &#x438;&#x43b;&#x438; &#x432; &#x433;&#x438;&#x433;&#x430;&#x431;&#x430;&#x439;&#x442;&#x430;&#x445; -Xms1G&#xa;http://www.minecraftforum.net/topic/1874325-jvm-argument-fps-boost/"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="jButtonSaveSettings">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x421;&#x43e;&#x445;&#x440;&#x430;&#x43d;&#x438;&#x442;&#x44c; &#x43d;&#x430;&#x441;&#x442;&#x440;&#x43e;&#x439;&#x43a;&#x438;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSaveSettingsActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

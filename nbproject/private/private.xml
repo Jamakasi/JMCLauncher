@@ -26,4 +26,13 @@
             </bookmark>
         </file>
     </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/C:/Users/DimanA90/Documents/NetBeansProjects/JMCLauncher_swing/src/jmc/minecraft/MainForm.java</file>
+        <file>file:/C:/Users/DimanA90/Documents/NetBeansProjects/JMCLauncher_swing/src/jmc/minecraft/Options.java</file>
+        <file>file:/C:/Users/DimanA90/Documents/NetBeansProjects/JMCLauncher_swing/src/jmc/minecraft/utils/ConfigLoaderCore.java</file>
+        <file>file:/C:/Users/DimanA90/Documents/NetBeansProjects/JMCLauncher_swing/src/jmc/minecraft/utils/MCGameRuner.java</file>
+        <file>file:/C:/Users/DimanA90/Documents/NetBeansProjects/JMCLauncher_swing/src/jmc/minecraft/LauncherPreloader.java</file>
+        <file>file:/C:/Users/DimanA90/Documents/NetBeansProjects/JMCLauncher_swing/src/jmc/minecraft/utils/LauncherUpdater.java</file>
+        <file>file:/C:/Users/DimanA90/Documents/NetBeansProjects/JMCLauncher_swing/src/jmc/minecraft/utils/GlobalVar.java</file>
+    </open-files>
 </project-private>
